@@ -7,6 +7,7 @@ const port = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use('/build', express.static(path.join(__dirname, '../build')));
 app.get('/', (req, res) => {
   // res.send('Hello World!');
   res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
