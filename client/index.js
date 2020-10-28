@@ -1,9 +1,12 @@
 import React from 'react';
 import { render } from 'react-dom';
-
-import styles from './scss/styles.css';
+import { BrowserRouter } from 'react-router-dom';
+import App from './App';
 
 render(
-  <p>this is from index in client</p>,
-  document.getElementById('app'),
+  // <p>this is from index in client</p>,
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById('root'),
 );
