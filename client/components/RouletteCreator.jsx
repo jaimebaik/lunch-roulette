@@ -31,20 +31,33 @@ import React, { useState, useEffect, useReducer } from 'react';
 
 function Input(props) {
   // const [text, setText] = useState('');
-  const [text, setText] = userReducer();
+  const [text, setText] = useReducer(
+    (state, newState) => ({...state, ...newState}),
+    {
+      menu1: '',
+      menu2: ''
+    }
+  );
   const [loading, setLoading] = useState();
+  
+  const handleTextChange = e => {
+    const labelName = e.target.name;
+    const newValue = e.target.value;
+
+    setText({[labelName]: newValue});
+  }
 
   return (
-    <Form >
+    <form >
+    <input 
+      type='text'
+      name='0'
+      placeholder='insert menu'
+      onChange={handleTextChange}
+    ></input>
       <input 
         type='text'
-        placeholder='insert menu'
-        onChange={(e) => {
-          setText(e.target.value)
-        }}
-      ></input>
-      <input 
-        type='text'
+        name='1'
         placeholder='insert menu'
         onChange={(e) => {
           setText(e.target.value)
@@ -60,12 +73,13 @@ function Input(props) {
             method: 'POST',
             body: JSON.stringify(bodyObj),
           }).then(data => {
-            setLoading(false)
+            setLoading(false);
+            console.log(body);
           }
           ).catch(err => console.log(err))
         }}
-      >Submit!</button>
-    </Form>
+      >Create Roulette!</button>
+    </form>
   )
 }
 

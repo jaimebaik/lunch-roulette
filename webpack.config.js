@@ -11,7 +11,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?/,
+        test: /\.(js|jsx)$/,
         exclude: /(node_modules)/,
         use: {
           loader: 'babel-loader',
@@ -24,10 +24,10 @@ module.exports = {
         test: /\.s?css$/,
         use: ['style-loader', 'css-loader', 'sass-loader']
       },
-      {
-        test: /\.html$/,
-        use: [{loader: 'htmle-loader'}]
-      }
+      // {
+      //   test: /\.html$/,
+      //   use: [{loader: 'html-loader'}]
+      // }
     ]
   }, 
   plugins: [
@@ -39,10 +39,10 @@ module.exports = {
     // publicPath: '/build'
     port: 8080,
     hot: true,
-    compress: true,
-    publicPath: '/',
+    // compress: true,
+    // publicPath: '/',
     proxy: {
-      '/roulette': {
+      '/': {
         target: 'http://localhost:3000',
         secret: false
       }
