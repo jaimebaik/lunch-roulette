@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
+// import { Switch, Route, Link } from 'react-router-dom';
 
-import Roulette from './components/RouletteContainer.jsx';
 import RouletteCreator from './components/RouletteCreator.jsx';
-import RouletteWheel from './components/RouletteWheel.jsx'
+// import Roulette from './components/RouletteContainer.jsx';
+// import RouletteWheel from './components/RouletteWheel.jsx;'
 
 import './scss/styles.css';
 

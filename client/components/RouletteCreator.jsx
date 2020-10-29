@@ -1,4 +1,7 @@
-import React, { useState, useEffect, useReducer } from 'react';
+// import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState } from 'react';
+import RouletteContainer from './RouletteContainer.jsx';
+// import RouletteWheel from './RouletteWheel.jsx;'
 
 // class Input extends React.Component {
 //   constructor(props) {
@@ -56,12 +59,14 @@ function Input(props) {
   // function updateText(index){
 
   // }
-  // function emptyTextBox(){
-  //   let counter = 0;
-  //   while(text`${counter}` !== ''){
-  //     setText`${counter++}`('');
-  //   }
-  // }
+  function emptyTextBox(){
+    // let counter = 0;
+    // while(text + `${counter}` !== ''){
+    //   setText + `${counter++}`('');
+    // }
+    setText0('');
+    setText1('');
+  }
 
   return (
     <form >
@@ -92,8 +97,8 @@ function Input(props) {
             '0': text0,
             '1': text1
           }
-          // emptyTextBox();
-          console.log(bodyObj);
+          emptyTextBox();
+          // console.log(bodyObj);
           fetch('/', {
             method: 'POST',
             headers: {
@@ -103,7 +108,7 @@ function Input(props) {
           }).then(data => {
             setLoading(false);
             // data.json();
-            console.log(data);
+            // console.log(data);
           }
           ).catch(err => console.log(err))
         }}
