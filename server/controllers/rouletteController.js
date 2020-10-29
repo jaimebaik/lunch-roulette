@@ -31,7 +31,7 @@ rouletteController.getRoulette = (req, res, next) => {
   .then(data => {
     res.locals.roulette = data['rows'];
     // console.log(rouletteID);
-    console.log(res.locals.roulette);
+    // console.log(res.locals.roulette);
     return next();
   })
 

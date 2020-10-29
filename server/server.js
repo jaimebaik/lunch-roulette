@@ -22,7 +22,9 @@ app.post('/', rouletteController.createRoulette, (req, res) => {
 });
 
 app.get('/roulette/:id', rouletteController.getRoulette, (req, res) => {
-  res.sendStatus(200).json(res.locals.roulette);
+  console.log(res.locals.roulette);
+  // res.status(200).json(res.locals.roulette);
+  res.status(200).json({roulette: res.locals.roulette});
 });
 
 app.use((req, res) => res.sendStatus(404));

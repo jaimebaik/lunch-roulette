@@ -44,6 +44,10 @@ function Input(props) {
   // const [text8, setText8] = useState('');
   // const [text9, setText9] = useState('');
   // const [text, setText] = useState(new Array(10));
+
+  const [choices, setChoices] = useState([]);
+  const [container, setContainer] = useState();
+
   const [loading, setLoading] = useState();
 
   // useEffect(setEmptyString,[]);
@@ -59,7 +63,7 @@ function Input(props) {
   // function updateText(index){
 
   // }
-  function emptyTextBox(){
+  function emptyTextBox() {
     // let counter = 0;
     // while(text + `${counter}` !== ''){
     //   setText + `${counter++}`('');
@@ -68,52 +72,80 @@ function Input(props) {
     setText1('');
   }
 
+  function postAndGetData() {
+    setLoading(true);
+    const bodyObj = {
+      // text: text,
+      '0': text0,
+      '1': text1
+    }
+    emptyTextBox();
+    // console.log(bodyObj);
+    fetch('/', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "Application/JSON"
+      },
+      body: JSON.stringify(bodyObj),
+    }).then(data => {
+       return data.json();
+      // console.log('DATA: ',data.url);
+      // console.log('DATA: ', data);
+      // const newChoices = [];
+      // for(const key in data[0]){
+      //   if(data[0][key]) newChoices.push(data[0][key]);
+      // }
+      // console.log('data in ARRAY: ',newChoices);
+    }).then(res => {
+      setLoading(false);
+      // console.log(res.roulette[0]);
+      const roulette = {...res.roulette[0]};
+      delete roulette['_id'];
+      delete roulette['last_modified'];
+      delete roulette['user_id'];
+      const newChoices = [];
+      for(const key in roulette){
+        if(roulette[key]) newChoices.push(roulette[key]);
+      }
+      // console.log('data in ARRAY: ',newChoices);
+      setChoices(newChoices);
+    })
+    .catch(err => console.log(err))
+  };  
   return (
-    <form >
-      <input 
-        type='text'
-        value={text0}
-        placeholder='insert menu'
-        onChange={(e) => {
-          setText0(e.target.value);
-          // console.log(text0);
-        }}
-      ></input>
-      <input 
-        type='text'
-        value={text1}
-        placeholder='insert menu'
-        onChange={(e) => {
-          setText1(e.target.value);
-          // console.log(text1);
-        }}
-      ></input>
-      <button
-        onClick={(e) => {
-          e.preventDefault();
-          setLoading(true);
-          const bodyObj = {
-            // text: text,
-            '0': text0,
-            '1': text1
-          }
-          emptyTextBox();
-          // console.log(bodyObj);
-          fetch('/', {
-            method: 'POST',
-            headers: {
-              "Content-Type": "Application/JSON"
-            },
-            body: JSON.stringify(bodyObj),
-          }).then(data => {
-            setLoading(false);
-            // data.json();
-            // console.log(data);
-          }
-          ).catch(err => console.log(err))
-        }}
-      >Create Roulette!</button>
-    </form>
+    <div className='wrapper'>
+      <form >
+        <label>choice1</label>
+        <input 
+          type='text'
+          value={text0}
+          placeholder='insert menu'
+          onChange={(e) => {
+            setText0(e.target.value);
+            // console.log(text0);
+          }}
+        ></input>
+        <label>choice2</label>
+        <input 
+          type='text'
+          value={text1}
+          placeholder='insert menu'
+          onChange={(e) => {
+            setText1(e.target.value);
+            // console.log(text1);
+          }}
+        ></input>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            postAndGetData();
+            // const container = <RouletteContainer roulette={choices}/>;
+            // setContainer(container);
+          }}
+        >Create Roulette!</button>
+      </form>
+      {choices.length>0 && <RouletteContainer roulette={choices}/>}
+    </div>
   )
 }
 
