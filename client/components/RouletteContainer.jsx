@@ -7,6 +7,8 @@ const colors = ['#FF6F61', '#6B5B95', '#88B04B', '#F7CAC9', '#92A8D1', '#955251'
 
 function Container ( props ){
   const [sectorData, setSectorData] = useState([]);
+  const [spin, setSpin] = useState(false);
+
   useEffect(() => {
     const dataForSector = [];
     props.roulette.forEach((choice, i)=> {
@@ -18,14 +20,17 @@ function Container ( props ){
   return(
     <div className='container'>
       {/* <RouletteWheel roulette={props.roulette}/> */}
-      {/* <button>Spin!</button> */}
       <Wheel 
-        mustStartSpinning={true}
-        prizeNumber={0}
+        mustStartSpinning={spin}
+        prizeNumber={Math.floor(Math.random()*sectorData.length)}
         data={sectorData}
+        onStopSpinning={() => setSpin(false)}
         backgroundColors={['#3e3e3e', '#df3428']}
         textColors={['#ffffff']}
-      />
+        outerBorderColor='transparent'
+        radiusLineColor='transparent'
+        />
+      <button onClick={() => setSpin(true)}>Spin!</button>
     </div>
   )
 };

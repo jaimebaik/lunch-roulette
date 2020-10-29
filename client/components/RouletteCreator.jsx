@@ -1,5 +1,5 @@
 // import React, { useState, useEffect, useReducer } from 'react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import RouletteContainer from './RouletteContainer.jsx';
 // import RouletteWheel from './RouletteWheel.jsx;'
 
@@ -33,43 +33,72 @@ import RouletteContainer from './RouletteContainer.jsx';
 // 3. componentDidUnmount // return
 
 function Input(props) {
+  // const [entries, setEntries] = useState([]);
+
   const [text0, setText0] = useState('');
   const [text1, setText1] = useState('');
-  // const [text2, setText2] = useState('');
-  // const [text3, setText3] = useState('');
-  // const [text4, setText4] = useState('');
-  // const [text5, setText5] = useState('');
-  // const [text6, setText6] = useState('');
-  // const [text7, setText7] = useState('');
-  // const [text8, setText8] = useState('');
-  // const [text9, setText9] = useState('');
-  // const [text, setText] = useState(new Array(10));
+  const [text2, setText2] = useState('');
+  const [text3, setText3] = useState('');
+  const [text4, setText4] = useState('');
+  const [text5, setText5] = useState('');
+  const [text6, setText6] = useState('');
+  const [text7, setText7] = useState('');
+  const [text8, setText8] = useState('');
+  const [text9, setText9] = useState('');
+  // const [text, setText] = useState(['', '', '', '', '', '', '', '', '', '']);
 
   const [choices, setChoices] = useState([]);
-  const [container, setContainer] = useState();
+  // const [container, setContainer] = useState();
 
   const [loading, setLoading] = useState();
 
+  // function setEmptyString(){
+  //   // let newText = new Array(10);
+  //   // newText.forEach(el => {
+  //   //   el = '';
+  //   // });
+  //   let newText = ['', '', '', '', '', '', '', '', '', ''];
+  //   setText(newText);
+  // }
+
   // useEffect(setEmptyString,[]);
 
-  // function setEmptyString(){
-  //   let newText = new Array(10);
-  //   newText.forEach(el => {
-  //     el = '';
-  //   });
-  //   setText(newText);
-  //   console.log(typeof text[0]);
-  // }
   // function updateText(index){
 
   // }
+  // function addEntry() {
+  //   const newEntries = [...entries];
+  //   if(newEntries.length < 8){
+  //     newEntries.push(
+  //       <input 
+  //       type='text'
+  //       value={text0}
+  //       placeholder='insert menu'
+  //       onChange={(e) => {
+  //         setText0(e.target.value);
+  //         // console.log(text0);
+  //       }}
+  //     ></input>
+  //     )
+  //   }
+  // }
+
   function emptyTextBox() {
     // let counter = 0;
     // while(text + `${counter}` !== ''){
     //   setText + `${counter++}`('');
     // }
+    // setText([]);
     setText0('');
     setText1('');
+    setText2('');
+    setText3('');
+    setText4('');
+    setText5('');
+    setText6('');
+    setText7('');
+    setText8('');
+    setText9('');
   }
 
   function postAndGetData() {
@@ -77,7 +106,15 @@ function Input(props) {
     const bodyObj = {
       // text: text,
       '0': text0,
-      '1': text1
+      '1': text1,
+      '2': text2,
+      '3': text3,
+      '4': text4,
+      '5': text5,
+      '6': text6,
+      '7': text7,
+      '8': text8,
+      '9': text9,
     }
     emptyTextBox();
     // console.log(bodyObj);
@@ -115,26 +152,36 @@ function Input(props) {
   return (
     <div className='wrapper'>
       <form >
-        <label>choice1</label>
+        <label>entry1</label>
         <input 
           type='text'
           value={text0}
           placeholder='insert menu'
           onChange={(e) => {
+            // const newText = [...text];
+            // newText[0] += e.target.value;
+            // console.log(newText);
             setText0(e.target.value);
             // console.log(text0);
           }}
         ></input>
-        <label>choice2</label>
+        <label>entry2</label>
         <input 
           type='text'
           value={text1}
           placeholder='insert menu'
           onChange={(e) => {
+            // const newText = [...text];
+            // newText[1] += e.target.value;
+            // console.log(newText);
             setText1(e.target.value);
             // console.log(text1);
           }}
         ></input>
+        {/* {entries}
+        <button onClick={() => {
+          addEntry
+        }}>+</button> */}
         <button
           onClick={(e) => {
             e.preventDefault();
