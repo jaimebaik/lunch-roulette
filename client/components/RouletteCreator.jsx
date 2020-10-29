@@ -33,18 +33,18 @@ import RouletteContainer from './RouletteContainer.jsx';
 // 3. componentDidUnmount // return
 
 function Input(props) {
-  // const [entries, setEntries] = useState([]);
+  const [entries, setEntries] = useState([]);
 
   const [text0, setText0] = useState('');
   const [text1, setText1] = useState('');
-  const [text2, setText2] = useState('');
-  const [text3, setText3] = useState('');
-  const [text4, setText4] = useState('');
-  const [text5, setText5] = useState('');
-  const [text6, setText6] = useState('');
-  const [text7, setText7] = useState('');
-  const [text8, setText8] = useState('');
-  const [text9, setText9] = useState('');
+  const [text2, setText2] = useState(null);
+  const [text3, setText3] = useState(null);
+  const [text4, setText4] = useState(null);
+  const [text5, setText5] = useState(null);
+  const [text6, setText6] = useState(null);
+  const [text7, setText7] = useState(null);
+  const [text8, setText8] = useState(null);
+  const [text9, setText9] = useState(null);
   // const [text, setText] = useState(['', '', '', '', '', '', '', '', '', '']);
 
   const [choices, setChoices] = useState([]);
@@ -66,22 +66,22 @@ function Input(props) {
   // function updateText(index){
 
   // }
-  // function addEntry() {
-  //   const newEntries = [...entries];
-  //   if(newEntries.length < 8){
-  //     newEntries.push(
-  //       <input 
-  //       type='text'
-  //       value={text0}
-  //       placeholder='insert menu'
-  //       onChange={(e) => {
-  //         setText0(e.target.value);
-  //         // console.log(text0);
-  //       }}
-  //     ></input>
-  //     )
-  //   }
-  // }
+  function addEntry() {
+    const newEntries = [...entries];
+    if(newEntries.length < 8){
+      newEntries.push(
+        <input 
+        type='text'
+        value={text0}
+        placeholder='insert menu'
+        onChange={(e) => {
+          setText0(e.target.value);
+          // console.log(text0);
+        }}
+      ></input>
+      )
+    }
+  }
 
   function emptyTextBox() {
     // let counter = 0;
@@ -178,10 +178,10 @@ function Input(props) {
             // console.log(text1);
           }}
         ></input>
-        {/* {entries}
+        {entries}
         <button onClick={() => {
           addEntry
-        }}>+</button> */}
+        }}>+</button>
         <button
           onClick={(e) => {
             e.preventDefault();
