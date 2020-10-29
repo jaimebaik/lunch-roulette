@@ -103,6 +103,7 @@ function Input(props) {
           }).then(data => {
             setLoading(false);
             // data.json();
+            console.log(data);
           }
           ).catch(err => console.log(err))
         }}
