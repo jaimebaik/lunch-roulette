@@ -30,51 +30,79 @@ import React, { useState, useEffect, useReducer } from 'react';
 // 3. componentDidUnmount // return
 
 function Input(props) {
-  // const [text, setText] = useState('');
-  const [text, setText] = useReducer(
-    (state, newState) => ({...state, ...newState}),
-    {
-      menu1: '',
-      menu2: ''
-    }
-  );
+  const [text0, setText0] = useState('');
+  const [text1, setText1] = useState('');
+  // const [text2, setText2] = useState('');
+  // const [text3, setText3] = useState('');
+  // const [text4, setText4] = useState('');
+  // const [text5, setText5] = useState('');
+  // const [text6, setText6] = useState('');
+  // const [text7, setText7] = useState('');
+  // const [text8, setText8] = useState('');
+  // const [text9, setText9] = useState('');
+  // const [text, setText] = useState(new Array(10));
   const [loading, setLoading] = useState();
-  
-  const handleTextChange = e => {
-    const labelName = e.target.name;
-    const newValue = e.target.value;
 
-    setText({[labelName]: newValue});
-  }
+  // useEffect(setEmptyString,[]);
+
+  // function setEmptyString(){
+  //   let newText = new Array(10);
+  //   newText.forEach(el => {
+  //     el = '';
+  //   });
+  //   setText(newText);
+  //   console.log(typeof text[0]);
+  // }
+  // function updateText(index){
+
+  // }
+  // function emptyTextBox(){
+  //   let counter = 0;
+  //   while(text`${counter}` !== ''){
+  //     setText`${counter++}`('');
+  //   }
+  // }
 
   return (
     <form >
-    <input 
-      type='text'
-      name='0'
-      placeholder='insert menu'
-      onChange={handleTextChange}
-    ></input>
       <input 
         type='text'
-        name='1'
+        value={text0}
         placeholder='insert menu'
         onChange={(e) => {
-          setText(e.target.value)
+          setText0(e.target.value);
+          // console.log(text0);
+        }}
+      ></input>
+      <input 
+        type='text'
+        value={text1}
+        placeholder='insert menu'
+        onChange={(e) => {
+          setText1(e.target.value);
+          // console.log(text1);
         }}
       ></input>
       <button
-        onClick={() => {
+        onClick={(e) => {
+          e.preventDefault();
           setLoading(true);
           const bodyObj = {
-            text: text,
+            // text: text,
+            '0': text0,
+            '1': text1
           }
+          // emptyTextBox();
+          console.log(bodyObj);
           fetch('/', {
             method: 'POST',
+            headers: {
+              "Content-Type": "Application/JSON"
+            },
             body: JSON.stringify(bodyObj),
           }).then(data => {
             setLoading(false);
-            console.log(body);
+            // data.json();
           }
           ).catch(err => console.log(err))
         }}
