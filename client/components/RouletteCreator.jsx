@@ -35,33 +35,33 @@ import RouletteContainer from './RouletteContainer.jsx';
 function Input(props) {
   const [entries, setEntries] = useState([]);
 
-  const [text0, setText0] = useState('');
-  const [text1, setText1] = useState('');
-  const [text2, setText2] = useState(null);
-  const [text3, setText3] = useState(null);
-  const [text4, setText4] = useState(null);
-  const [text5, setText5] = useState(null);
-  const [text6, setText6] = useState(null);
-  const [text7, setText7] = useState(null);
-  const [text8, setText8] = useState(null);
-  const [text9, setText9] = useState(null);
-  // const [text, setText] = useState(['', '', '', '', '', '', '', '', '', '']);
+  // const [text0, setText0] = useState('');
+  // const [text1, setText1] = useState('');
+  // const [text2, setText2] = useState(null);
+  // const [text3, setText3] = useState(null);
+  // const [text4, setText4] = useState(null);
+  // const [text5, setText5] = useState(null);
+  // const [text6, setText6] = useState(null);
+  // const [text7, setText7] = useState(null);
+  // const [text8, setText8] = useState(null);
+  // const [text9, setText9] = useState(null);
+  const [text, setText] = useState([]);
 
   const [choices, setChoices] = useState([]);
   // const [container, setContainer] = useState();
 
   const [loading, setLoading] = useState();
 
-  // function setEmptyString(){
-  //   // let newText = new Array(10);
-  //   // newText.forEach(el => {
-  //   //   el = '';
-  //   // });
-  //   let newText = ['', '', '', '', '', '', '', '', '', ''];
-  //   setText(newText);
-  // }
+  function setEmptyString(){
+    let newText = new Array(10);
+    newText.forEach(el => {
+      el = '';
+    });
+    // let newText = ['', '', '', '', '', '', '', '', '', ''];
+    setText(newText);
+  }
 
-  // useEffect(setEmptyString,[]);
+  useEffect(setEmptyString,[]);
 
   // function updateText(index){
 
@@ -69,17 +69,26 @@ function Input(props) {
   function addEntry() {
     const newEntries = [...entries];
     if(newEntries.length < 8){
+      const index = newEntries.length+2;
       newEntries.push(
-        <input 
-        type='text'
-        value={text0}
-        placeholder='insert menu'
-        onChange={(e) => {
-          setText0(e.target.value);
-          // console.log(text0);
-        }}
-      ></input>
+        <div>
+          <label>entry{index+1}</label>
+          <input 
+          type='text'
+          value={text[index]}
+          placeholder='insert menu'
+          onChange={(e) => {
+            const newText = [...text];
+            newText[index] = '';
+            newText[index] += e.target.value;
+            setText(newText);
+            // console.log(newText);
+            // console.log(text0);
+          }}
+        ></input>
+      </div>
       )
+      setEntries(newEntries);
     }
   }
 
@@ -88,36 +97,36 @@ function Input(props) {
     // while(text + `${counter}` !== ''){
     //   setText + `${counter++}`('');
     // }
-    // setText([]);
-    setText0('');
-    setText1('');
-    setText2('');
-    setText3('');
-    setText4('');
-    setText5('');
-    setText6('');
-    setText7('');
-    setText8('');
-    setText9('');
+    setText([]);
+    // setText0('');
+    // setText1('');
+    // setText2('');
+    // setText3('');
+    // setText4('');
+    // setText5('');
+    // setText6('');
+    // setText7('');
+    // setText8('');
+    // setText9('');
   }
 
   function postAndGetData() {
     setLoading(true);
     const bodyObj = {
       // text: text,
-      '0': text0,
-      '1': text1,
-      '2': text2,
-      '3': text3,
-      '4': text4,
-      '5': text5,
-      '6': text6,
-      '7': text7,
-      '8': text8,
-      '9': text9,
+      '0': text[0],
+      '1': text[1],
+      '2': text[2],
+      '3': text[3],
+      '4': text[4],
+      '5': text[5],
+      '6': text[6],
+      '7': text[7],
+      '8': text[8],
+      '9': text[9],
     }
     emptyTextBox();
-    // console.log(bodyObj);
+    console.log('BODY: ',bodyObj);
     fetch('/', {
       method: 'POST',
       headers: {
@@ -152,35 +161,46 @@ function Input(props) {
   return (
     <div className='wrapper'>
       <form >
-        <label>entry1</label>
-        <input 
-          type='text'
-          value={text0}
-          placeholder='insert menu'
-          onChange={(e) => {
-            // const newText = [...text];
-            // newText[0] += e.target.value;
-            // console.log(newText);
-            setText0(e.target.value);
-            // console.log(text0);
-          }}
-        ></input>
-        <label>entry2</label>
-        <input 
-          type='text'
-          value={text1}
-          placeholder='insert menu'
-          onChange={(e) => {
-            // const newText = [...text];
-            // newText[1] += e.target.value;
-            // console.log(newText);
-            setText1(e.target.value);
-            // console.log(text1);
-          }}
-        ></input>
+        <div>
+          <label>entry1</label>
+          <input 
+            type='text'
+            // value={text0}
+            value={text[0]}
+            placeholder='insert menu'
+            onChange={(e) => {
+              const newText = [...text];
+              newText[0] = '';
+              newText[0] += e.target.value;
+              setText(newText);
+              console.log(newText);
+              // setText0(e.target.value);
+              // console.log(text0);
+            }}
+          ></input>
+        </div>
+        <div>
+          <label>entry2</label>
+          <input 
+            type='text'
+            // value={text1}
+            value={text[1]}
+            placeholder='insert menu'
+            onChange={(e) => {
+              const newText = [...text];
+              newText[1] = '';
+              newText[1] += e.target.value;
+              setText(newText);
+              console.log(newText);
+              // setText1(e.target.value);
+              // console.log(text1);
+            }}
+          ></input>
+        </div>
         {entries}
-        <button onClick={() => {
-          addEntry
+        <button onClick={(e) => {
+          e.preventDefault();
+          addEntry()
         }}>+</button>
         <button
           onClick={(e) => {
