@@ -1,5 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 body {
   margin: 0;
   background-color: lavenderblush;
+  text-align: center;
   /* background-color: lightblue; */
+}
+
+h1 {
+  font-family: 'Anton', sans-serif;
+}
+
+input {
+  background-color: #fafafa;
+  border-radius: 3px;
+  border: 1px solid;
+  border-color: #d9d9d9;
+  padding: 0.5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+button {
+  background-color: #fafafa;
+  border-radius: 3px;
+  border: 1px solid;
+  border-color: #d9d9d9;
+  padding: 0.5em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+.container {
+  text-align: center;
 }

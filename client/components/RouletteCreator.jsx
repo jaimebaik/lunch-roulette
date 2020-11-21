@@ -34,22 +34,8 @@ import RouletteContainer from './RouletteContainer.jsx';
 
 function Input(props) {
   const [entries, setEntries] = useState([]);
-
-  // const [text0, setText0] = useState('');
-  // const [text1, setText1] = useState('');
-  // const [text2, setText2] = useState(null);
-  // const [text3, setText3] = useState(null);
-  // const [text4, setText4] = useState(null);
-  // const [text5, setText5] = useState(null);
-  // const [text6, setText6] = useState(null);
-  // const [text7, setText7] = useState(null);
-  // const [text8, setText8] = useState(null);
-  // const [text9, setText9] = useState(null);
   const [text, setText] = useState([]);
-
   const [choices, setChoices] = useState([]);
-  // const [container, setContainer] = useState();
-
   const [loading, setLoading] = useState();
 
   function setEmptyString(){
@@ -57,17 +43,15 @@ function Input(props) {
     newText.forEach(el => {
       el = '';
     });
-    // let newText = ['', '', '', '', '', '', '', '', '', ''];
+
     setText(newText);
   }
 
   useEffect(setEmptyString,[]);
-
-  // function updateText(index){
-
-  // }
+  
   function addEntry() {
     const newEntries = [...entries];
+    console.log('new Entries 1st', newEntries)
     if(newEntries.length < 8){
       const index = newEntries.length+2;
       newEntries.push(
@@ -79,11 +63,11 @@ function Input(props) {
           placeholder='insert menu'
           onChange={(e) => {
             const newText = [...text];
+            console.log('text', text)
             newText[index] = '';
             newText[index] += e.target.value;
+            console.log('newTxt', newText)
             setText(newText);
-            // console.log(newText);
-            // console.log(text0);
           }}
         ></input>
       </div>
@@ -93,27 +77,13 @@ function Input(props) {
   }
 
   function emptyTextBox() {
-    // let counter = 0;
-    // while(text + `${counter}` !== ''){
-    //   setText + `${counter++}`('');
-    // }
     setText([]);
-    // setText0('');
-    // setText1('');
-    // setText2('');
-    // setText3('');
-    // setText4('');
-    // setText5('');
-    // setText6('');
-    // setText7('');
-    // setText8('');
-    // setText9('');
+    // setEntries([]);
   }
 
   function postAndGetData() {
     setLoading(true);
     const bodyObj = {
-      // text: text,
       '0': text[0],
       '1': text[1],
       '2': text[2],
@@ -125,7 +95,7 @@ function Input(props) {
       '8': text[8],
       '9': text[9],
     }
-    emptyTextBox();
+    // emptyTextBox();
     console.log('BODY: ',bodyObj);
     fetch('/', {
       method: 'POST',
@@ -172,8 +142,8 @@ function Input(props) {
               const newText = [...text];
               newText[0] = '';
               newText[0] += e.target.value;
+              console.log('text in 0', text);
               setText(newText);
-              console.log(newText);
               // setText0(e.target.value);
               // console.log(text0);
             }}
@@ -206,6 +176,7 @@ function Input(props) {
           onClick={(e) => {
             e.preventDefault();
             postAndGetData();
+            emptyTextBox();
             // const container = <RouletteContainer roulette={choices}/>;
             // setContainer(container);
           }}

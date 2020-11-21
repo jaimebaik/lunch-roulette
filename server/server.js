@@ -13,6 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/build', express.static(path.join(__dirname, '../build')));
 app.get('/', (req, res) => {
   // res.send('Hello World!');
+  console.log('hello');
   res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
 });
 app.post('/', rouletteController.createRoulette, (req, res) => {
